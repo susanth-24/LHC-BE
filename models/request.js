@@ -20,6 +20,7 @@ const requestSchema = mongoose.Schema({
     requestStatus_3:{type:String,default:"Pending"},
     reason:String,
     remarks:String,
+    attended:{type:Boolean,default:false},
     rejectComment:{type:String,default:null},
     createdAt: {
         type: Date,

@@ -25,6 +25,19 @@ export const getRequest=async(req,res)=>{
 
 }
 
+export const attended=async(req,res)=>{
+    const {id}=req.params;
+    try {
+        const updatedRequest=await request.findOneAndUpdate(
+            {_id:id},
+            {attended:true}
+        )
+        res.json(updatedRequest);
+
+    } catch (error) {
+        
+    }
+}
 
 export const acceptRequest_1=async(req,res)=>{
     const {id}=req.params;
