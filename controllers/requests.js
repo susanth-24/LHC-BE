@@ -39,22 +39,25 @@ export const attended=async(req,res)=>{
     }
 }
 
-export const acceptRequest_1=async(req,res)=>{
-    const {id}=req.params;
+export const acceptRequest_1 = async (req, res) => {
+    const { id } = req.params;
     try {
-        const updatedRequest=await request.findOneAndUpdate(
-            {_id:id},
-            {requestStatus_1:'Approved'},
-            {requestStatus_2:'Approved'},
-            {requestStatus_3:'Approved'},
-
-        )
+        const updatedRequest = await request.findOneAndUpdate(
+            { _id: id }, // Filter to find the document
+            {
+                requestStatus_1: 'Approved',
+                requestStatus_2: 'Approved',
+                requestStatus_3: 'Approved',
+            }, // Update fields
+            { new: true } // Return the updated document
+        );
         res.json(updatedRequest);
-
     } catch (error) {
-        
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
     }
-}
+};
+
 export const rejectRequest_1=async(req,res)=>{
     const {id}=req.params;
     const com = req.body;
