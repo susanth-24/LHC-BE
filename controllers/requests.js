@@ -45,6 +45,9 @@ export const acceptRequest_1=async(req,res)=>{
         const updatedRequest=await request.findOneAndUpdate(
             {_id:id},
             {requestStatus_1:'Approved'},
+            {requestStatus_1:'Approved'},
+            {requestStatus_1:'Approved'},
+
         )
         res.json(updatedRequest);
 

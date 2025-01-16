@@ -170,6 +170,9 @@ export const acceptAvail_1 = async (req, res) => {
         );
 
         foundAvailability.status_1 = 'Approved';
+        foundAvailability.status_2 = 'Approved';
+        foundAvailability.status_3 = 'Approved';
+
         await room.save();
         if (!foundAvailability) {
             return res.status(404).json({ error: 'Availability element not found' });
