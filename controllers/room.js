@@ -252,6 +252,9 @@ export const rejectAvail_1 = async (req, res) => {
         );
 
         foundAvailability.status_1 = 'Declined';
+        foundAvailability.status_2 = 'Declined';
+        foundAvailability.status_3 = 'Declined';
+
         await room.save();
         if (!foundAvailability) {
             return res.status(404).json({ error: 'Availability element not found' });

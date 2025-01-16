@@ -58,23 +58,37 @@ export const acceptRequest_1 = async (req, res) => {
     }
 };
 
-export const rejectRequest_1=async(req,res)=>{
-    const {id}=req.params;
-    const com = req.body;
-    const id1 = Object.keys(com)[0];
+export const rejectRequest_1 = async (req, res) => {
+    const { id } = req.params; // Request ID
+    const com = req.body; // Contains the rejection comment
+    const id1 = Object.keys(com)[0]; // Extract the rejection comment key
+
     try {
-        const updatedRequest=await request.findOneAndUpdate(
-            {_id:id},
-            { $set: { requestStatus_2: 'Declined', rejectComment: id1 } },
-            { new: true }
-        )
+        // Update the request document
+        const updatedRequest = await request.findOneAndUpdate(
+            { _id: id }, // Filter to find the document
+            { 
+                $set: {
+                    requestStatus_1: 'Declined',
+                    requestStatus_2: 'Declined',
+                    requestStatus_3: 'Declined',
+                    rejectComment: id1 // Store the comment
+                }
+            },
+            { new: true } // Return the updated document
+        );
+
+        if (!updatedRequest) {
+            return res.status(404).json({ error: 'Request not found' });
+        }
+
+        // Send the updated request as a response
         res.json(updatedRequest);
-
     } catch (error) {
-        
+        console.error(error); // Log the error
+        res.status(500).json({ error: 'Internal server error' });
     }
-}
-
+};
 
 
 export const acceptRequest_2=async(req,res)=>{
